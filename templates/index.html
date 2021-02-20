@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>TextEditor</title>
+  </head>
+  <body>
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">TextEditor.com</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact Us</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+    <form class="d-flex">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Welcome to TextEditor!!!</strong> You can edit your text here.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+  <div class="container">
+    <form action="/analyze" method="post">{% csrf_token %}
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Enter your text here</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="9" name="text"></textarea>
+</div>
+    <div class="form-check form-switch">
+  <input class="form-check-input" name="removepunc" type="checkbox" id="flexSwitchCheckDefault">
+  <label class="form-check-label" for="flexSwitchCheckDefault">Remove Punctuations</label>
+</div>
+     <div class="form-check form-switch">
+  <input class="form-check-input" name="removeline" type="checkbox" id="flexSwitchCheckDefault1">
+  <label class="form-check-label" for="flexSwitchCheckDefault1">Remove Lines<br></label>
+</div>
+      <div class="form-check form-switch">
+  <input class="form-check-input" name="capitalize" type="checkbox" id="flexSwitchCheckDefault2">
+  <label class="form-check-label" for="flexSwitchCheckDefault2">Upper Case<br></label>
+</div>
+      <div class="form-check form-switch">
+  <input class="form-check-input" name="removespace" type="checkbox" id="flexSwitchCheckDefault3">
+  <label class="form-check-label" for="flexSwitchCheckDefault3">Remove Space<br></label>
+</div>
+      <label>Find :- </label>
+      <input name="find" type="text"> </input>
+      <br>
+      <label>Replace with :- </label>
+      <input name="replace" type="text"> </input>
+      <br>
+   <button type="submit" class="btn btn-dark mt-2">Edit Text</button>
+  </form>
+  </div>
+  </body>
+</html>
