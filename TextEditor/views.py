@@ -13,6 +13,7 @@ def analyze(request):
     bchar=1
     bword=0
     bsent=1
+    count=0
     for i in range(0,len(dtext)-1):
         if(dtext[i] != "\r"):
             bchar+=1
@@ -49,22 +50,10 @@ def analyze(request):
             else:
                 analyzed += dtext[i]
         dtext=analyzed
-    if(find):
-        fword=0
-        for i in range(0,len(dtext)):
-            print(dtext[i])
-            if(dtext[i]==find[0] and i+len(find)!='\n' and i+len(find)!='\r'):
-                j=1
-                flag=0
-                while(j<len(find)):
-                    if(dtext[i+j]!=find[j]):
-                        flag=1
-                        break
-                    j+=1
-                if(flag==0):
-                    fword+=1
-                    if(replace):
-                        dtext=dtext.replace('find','replace')
+
+    if(len(find) != 0 and len(replace) != 0):
+        count=dtext.count(find)
+        dtext.replace(find,replace)
     achar = 1
     aword = 0
     asent = 1
@@ -78,9 +67,24 @@ def analyze(request):
                 aword += 1
         if (dtext[i] == '.' or dtext[i] == '\n'):
             asent += 1
-    params = {'analyzed_text': dtext,'before_char':bchar,'before_word':bword,'before_sent':bsent,'after_char':achar,'after_word':aword,'after_sent':asent,'word_count':fword,'number_to_find':find}
+    params = {'analyzed_text': dtext,
+              'before_char':bchar,
+              'before_word':bword,
+              'before_sent':bsent,
+              'after_char':achar,
+              'after_word':aword,
+              'after_sent':asent,
+              'number_to_find':find,
+              'word_count':count
+              }
     if(space != 'on' and newline != 'on' and upper != 'on' and punc != 'on' and len(find)==0):
         return render(request,'error.html',params)
     return render(request,'analyze.html',params)
+def about(request):
+    return render(request,'about.html')
+def feedback(request):
+    return render(request,'feedback.html')
+def thankyou(request):
+    return render(request,'Thank You.html')
 
 
